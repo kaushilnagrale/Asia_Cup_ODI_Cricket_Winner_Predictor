@@ -5,9 +5,8 @@ from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from IPython.display import clear_output
 
-import tensorflow.compat.v2.feature_column as fc
-
 import tensorflow as tf
+
 
 dir = os.getcwd()
 
@@ -58,7 +57,7 @@ linear_est.train(train_input_fn)  # train
 result = linear_est.evaluate(eval_input_fn)  # get model metrics/stats by testing on tetsing data
 
 clear_output()  # clears consoke output
-print(result['accuracy'])  # the result variable is simply a dict of stats about our model
+#print(result['accuracy'])  # the result variable is simply a dict of stats about our model
 
 
 pred_dicts = list(linear_est.predict(eval_input_fn))
