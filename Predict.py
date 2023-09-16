@@ -70,12 +70,12 @@ probs = pd.Series([pred['probabilities'][1] for pred in pred_dicts])
 
 #Fetch from the frontend User sample for debugging
 input_data = {
-    'Team': 'India',         # Replace with the actual values
-    'Opponent': 'Pakistan',
+    'Team': 'Hong Kong',         # Replace with the actual values
+    'Opponent': 'Australia',
     'Ground': 'Colombo(SSC)',
     'Year': 2022,
-    'Toss': 'India',
-    'Selection': 'Batting'
+    'Toss': 'Australia',
+    'Selection': 'Bowling'
 }
 
 
