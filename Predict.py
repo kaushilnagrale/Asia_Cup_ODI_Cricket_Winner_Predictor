@@ -36,7 +36,7 @@ for feature_name in CATEGORICAL_COLUMNS:
   vocabulary = X_train[feature_name].unique()  # gets a list of all unique values from given feature column
   feature_columns.append(tf.feature_column.categorical_column_with_vocabulary_list(feature_name, vocabulary))
 
-#print(feature_columns)
+print(feature_columns)
 
 def make_input_fn(data_df, label_df, num_epochs=10, shuffle=True, batch_size=32):
   def input_function():  # inner function, this will be returned

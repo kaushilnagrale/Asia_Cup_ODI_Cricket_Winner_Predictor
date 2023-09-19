@@ -1,7 +1,74 @@
+<!DOCTYPE html>
 <html>
-    <body>
-        <h1>
-            Welcome to The Prediction APP
-        </h1>
-    </body>
+<head>
+    <title>Asia Cup Match Predictor</title>
+</head>
+<body>
+    <h1>Asia Cup 1 vs 1 Predictor</h1>
+    <form action="/" method="POST">
+        <label for="team">Your Team:</label>
+        <select id="team" name="team">
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="India">India</option>
+            <option value="Sri Lanka">Sri Lanka</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="UAE">UAE</option>
+            <option value="Afghanistan">Afghanistan</option>
+            <option value="Hong Kong">Hong Kong</option>
+            
+        </select><br><br>
+
+        <label for="opponent">Opponent:</label>
+        <select id="opponent" name="opponent">
+            <option value="Bangladesh">Bangladesh</option>
+            <option value="India">India</option>
+            <option value="Sri Lanka">Sri Lanka</option>
+            <option value="Pakistan">Pakistan</option>
+            <option value="UAE">UAE</option>
+            <option value="Afghanistan">Afghanistan</option>
+            <option value="Hong Kong">Hong Kong</option>
+            <!-- Add more options as needed -->
+        </select><br><br>
+
+        <label for="ground">Ground:</label>
+        <select id="ground" name="ground">
+            <option value="Sharjah">Sharjah</option>
+            <option value="Dambulla">Dambulla</option>
+            <option value="Colombo(RPS)">Colombo(RPS)</option>
+            <option value="Dubai(DSC)">Dubai(DSC)</option>
+            <option value="Lahore">Lahore</option>
+            <option value="Karachi">Karachi</option>
+            <option value="Colombo(SSC)">Colombo(SSC)</option>
+            <option value="Mirpur">Mirpur</option>
+            <option value="Dhaka">Dhaka</option>
+            <option value="Fatullah">Fatullah</option>
+            <option value="Chandigarh">Chandigarh</option>
+            <option value="Abu Dhabi">Abu Dhabi</option>
+            <option value="Cuttack">Cuttack</option>
+            <option value="Kolkata">Kolkata</option>
+            <option value="Kandy">Kandy</option>
+            <option value="Colombo(PSS)">Colombo(PSS)</option>
+            <option value="Moratuwa">Moratuwa</option>
+            <option value="Chattogram">Chattogram</option>
+            <!-- Add more options as needed -->
+        </select><br><br>
+
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" required><br><br>
+
+        <label for="toss">Your Team Toss:</label>
+        <select id="toss" name="toss">
+            <option value="Win">Win</option>
+            <option value="Lose">Lose</option>
+        </select><br><br>
+
+        <label for="selection">Selection:</label>
+        <select id="selection" name="selection">
+            <option value="Batting">Batting</option>
+            <option value="Bowling">Bowling</option>
+        </select><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
 </html>
