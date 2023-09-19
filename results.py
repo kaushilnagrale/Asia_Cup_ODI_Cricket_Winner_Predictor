@@ -30,8 +30,11 @@ def predict_single_input(model, input_data):
     
     return predicted_probability, predicted_class
 
-# Make a prediction for the example input
-predicted_probability, predicted_class = predict_single_input(linear_est, input_data)
+# Load the saved model
+loaded_model = tf.saved_model.load(saved_model_path)
+
+# Make predictions using the loaded model (similar to your predict_single_input function)
+predicted_probability, predicted_class = predict_single_input(loaded_model, input_data)
 
 print(f"Predicted Probability: {predicted_probability}")
 print(f"Predicted Class: {'Win' if predicted_class == 1 else 'Lose'}")

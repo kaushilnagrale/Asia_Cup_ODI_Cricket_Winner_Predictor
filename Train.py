@@ -8,6 +8,7 @@ from IPython.display import clear_output
 import tensorflow as tf
 
 
+
 dir = os.getcwd()
 
 path = os.path.join(dir,'data','asiacup.csv')
@@ -65,6 +66,8 @@ probs = pd.Series([pred['probabilities'][1] for pred in pred_dicts])
 #probs.plot(kind='hist', bins=20, title='predicted probabilities')
 
 
+
+
 # Define the directory where you want to save the model
 model_dir = 'saved_model'
 
@@ -72,11 +75,9 @@ model_dir = 'saved_model'
 if not os.path.exists(model_dir):
     os.makedirs(model_dir)
 
-# Save the trained model using tf.saved_model.save
-saved_model_path = os.path.join(model_dir, 'linear_estimator')
-tf.saved_model.save(linear_est, saved_model_path)
-
-print(f"Model saved to {saved_model_path}")
-
+# Save the trained model using export_saved_model
+serving_input_fn = tf.estimator.export.build_parsing_serving_input_receiver_fn(
+    feature_spec=tf.feature_column.make_parse_example_spec(feature_columns))
+linear_est.export_saved_model(model_dir, serving_input_fn)
 
 
