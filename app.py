@@ -117,12 +117,14 @@ def welcome():
             print(f"Predicted Probability: {predicted_probability}")
             print(f"Predicted Class: {'Win' if predicted_class == 1 else 'Lose'}")
             
-            if predicted_class == 1:
+            if 0.45 < float(predicted_probability) < 0.55:
+                res = 'Have a Exciting match'
+            elif predicted_class == 1:
                 res = 'Win'
-                predicted_probability = round(float(predicted_probability)*100,2)
+                
             else:
                 res = 'Lose' 
-                predicted_probability = 100 - round(float(predicted_probability)*100,2)
+            predicted_probability = round(float(predicted_probability)*100,2)    
             # Render the 'result.html' template with the received data
             return render_template('result.html', predicted_probability=predicted_probability, res=res, team=team, opponent=opponent, ground=ground, year=year)
         return render_template("index.html")
