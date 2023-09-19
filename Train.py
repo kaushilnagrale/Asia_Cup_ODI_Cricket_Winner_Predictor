@@ -48,36 +48,36 @@ def make_input_fn(data_df, label_df, num_epochs=10, shuffle=True, batch_size=32)
     return ds  # return a batch of the dataset
   return input_function  # return a function object for use
 
-train_input_fn = make_input_fn(X_train, y_train)  # here we will call the input_function that was returned to us to get a dataset object we can feed to the model
-eval_input_fn = make_input_fn(X_test, y_test, num_epochs=1, shuffle=False)
 
-linear_est = tf.estimator.LinearClassifier(feature_columns=feature_columns)
-# We create a linear estimtor by passing the feature columns we created earlier
+if __name__=='__main__':
+    train_input_fn = make_input_fn(X_train, y_train)  # here we will call the input_function that was returned to us to get a dataset object we can feed to the model
+    eval_input_fn = make_input_fn(X_test, y_test, num_epochs=1, shuffle=False)
 
-linear_est.train(train_input_fn)  # train
-result = linear_est.evaluate(eval_input_fn)  # get model metrics/stats by testing on tetsing data
+    linear_est = tf.estimator.LinearClassifier(feature_columns=feature_columns)
+    # We create a linear estimtor by passing the feature columns we created earlier
 
-clear_output()  # clears consoke output
-#print(result['accuracy'])  # the result variable is simply a dict of stats about our model
+    linear_est.train(train_input_fn)  # train
+    result = linear_est.evaluate(eval_input_fn)  # get model metrics/stats by testing on tetsing data
 
-
-pred_dicts = list(linear_est.predict(eval_input_fn))
-probs = pd.Series([pred['probabilities'][1] for pred in pred_dicts])
-#probs.plot(kind='hist', bins=20, title='predicted probabilities')
+    clear_output()  # clears consoke output
+    #print(result['accuracy'])  # the result variable is simply a dict of stats about our model
 
 
+    pred_dicts = list(linear_est.predict(eval_input_fn))
+    probs = pd.Series([pred['probabilities'][1] for pred in pred_dicts])
+    #probs.plot(kind='hist', bins=20, title='predicted probabilities')
 
 
-# Define the directory where you want to save the model
-model_dir = 'saved_model'
+    # Define the directory where you want to save the model
+    model_dir = 'saved_model'
 
-# Create the directory if it doesn't exist
-if not os.path.exists(model_dir):
-    os.makedirs(model_dir)
+    # Create the directory if it doesn't exist
+    if not os.path.exists(model_dir):
+        os.makedirs(model_dir)
 
-# Save the trained model using export_saved_model
-serving_input_fn = tf.estimator.export.build_parsing_serving_input_receiver_fn(
-    feature_spec=tf.feature_column.make_parse_example_spec(feature_columns))
-linear_est.export_saved_model(model_dir, serving_input_fn)
+    # Save the trained model using export_saved_model
+    serving_input_fn = tf.estimator.export.build_parsing_serving_input_receiver_fn(
+        feature_spec=tf.feature_column.make_parse_example_spec(feature_columns))
+    linear_est.export_saved_model(model_dir, serving_input_fn)
 
 
